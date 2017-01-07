@@ -22,7 +22,7 @@ double Determinant(double **a,int n)
 
    if (n < 1) { /* Error */
 
-   } else if (n == 1) { /* Shouldn't get used */
+   } else if (n == 1) { 
       det = a[0][0];
    } else if (n == 2) {
       det = a[0][0] * a[1][1] - a[1][0] * a[0][1];
@@ -68,13 +68,11 @@ double ** CoFactor(double **a,int n)
 
    for (i=0;i<n-1;i++)
      {
-	 //c[i] = malloc((n-1)*sizeof(double));
-	 c[i] = (double*)malloc((n-1)*sizeof(double));//my
+	 c[i] = (double*)malloc((n-1)*sizeof(double));
 	}
 
    for (j=0;j<n;j++) {
-	b[j] = (double*)malloc( sizeof(double) * n);//my
-	//b[i] = malloc( sizeof(double) * n);
+	b[j] = (double*)malloc( sizeof(double) * n);
       for (i=0;i<n;i++) {
 
          /* Form the adjoint a_ij */
@@ -94,12 +92,8 @@ double ** CoFactor(double **a,int n)
 
          /* Calculate the determinate */
          det = Determinant(c,n-1);
-		 //if(det==0) 
-		 //det=0.000001;
-		 //printf("(%d,%d) = %.4f\n", j,i,det);
          /* Fill in the elements of the cofactor */
          b[j][i] = pow(-1.0,i+j+2.0) * det;
-		//b[i][j]=0;
       }
    }
 	//printMatrix (b,n);
@@ -181,9 +175,6 @@ void randomize ( int arr[], int n )
     // Use a different seed value so that we don't get same
     // result each time we run this program
     srand ( time(NULL) );
- 
-    // Start from the last element and swap one by one. We don't
-    // need to run for the first element that's why i > 0
     int i;
     for (i = n-1; i > 0; i--)
     {
@@ -203,7 +194,6 @@ void randomize ( int arr[], int n )
 int * first_k (int arr[],int SIZE,int k)
 {
 	int i;
-	//static int initial[4];
 	int *initial;
 	initial = (int *)malloc(k*sizeof(int));
 	for(i=0;i<k;i++) 
@@ -218,9 +208,7 @@ int * first_k (int arr[],int SIZE,int k)
 */
 int * set_subtract(int set1[],int set2[],int n1,int n2)
 {
-	//Set Subtraction
 	int k,i,j,flag,p;
-	//static int set3[8];
 	int *set3;
 	set3 = (int *)malloc((n1-n2)*sizeof(int));
 
@@ -242,9 +230,6 @@ int * set_subtract(int set1[],int set2[],int n1,int n2)
 			k++;
 		}
 	 }
-	//printArray(set1, n1);
-	//printArray(set2, n2);
-	//printArray(set3,n1-n2);
 	return set3;
 }
 
@@ -356,15 +341,6 @@ double **read_simil(int n)
 		}
 	}
 
-	//printMatrix (array,n);
-
-	//Deallocate spiral array
-	//for (i = 0; i < n; i++) {
-	//	free(array[i]);
-	//}
-	//free(array);
-	//array = NULL;
-
 	// Close files
 	fclose(pFile);
 	
@@ -391,6 +367,7 @@ double matr_product(double **L,double *x,int k)
 
 int main()
 {
+
 //SIZE is total number of items and k is number of elements to sample
 	int SIZE=100;
 	int max_nb_iterations=1000;
